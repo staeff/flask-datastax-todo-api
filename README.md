@@ -32,15 +32,14 @@ flask run --port 8080
 
 ## Run the integrations tests with a sever that is in the internet
 
-https://help.pythonanywhere.com/pages/Flask
-
 ```bash
 https://todobackend.com/specs/index.html?$https://api.yourserver.com/api/v1/test/todos
 ```
 
-## Preview the client
+## Use the client
 
-Change in the url the `specs` path by `client`
+Change in the url the `specs` path by `client` to get a Browserclient that uses your api
+as the backend.
 
 ```bash
 https://todobackend.com/client/index.html?$https://api.yourserver.com/api/v1/test/todos
