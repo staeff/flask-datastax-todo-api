@@ -15,6 +15,13 @@ app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
+@app.route("/api/v1/<user_id>/todos/completed", methods=["GET"])
+def get_completed_todos(user_id):
+    cql = f"SELECT * FROM todos.todoitems WHERE user_id = '{user_id}' and completed = True ALLOW FILTERING"
+    res = session.execute(cql)
+    return jsonify(res.all())
+
+
 @app.route("/api/v1/<user_id>/todos", methods=["GET"])
 def get_todos(user_id):
     res = [dict(x) for x in Todos.filter(user_id=user_id)]

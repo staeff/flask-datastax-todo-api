@@ -75,6 +75,12 @@ with app.test_client() as client:
         missing_res = client.patch(f"/api/v1/{USER_ID}/todos/{uuid.uuid1()}")
         assert missing_res.status_code == 404
 
+    @pytest.mark.it("it should get the completed todos of a user")
+    def test_get_completed_todos():
+        get_res = client.get(f"/api/v1/{USER_ID}/todos/completed")
+        get_res_json = get_res.get_json()
+        assert len(get_res_json) == 1
+
     @pytest.mark.it("it should delete all todos of user")
     def test_delete_todos_of_user():
         delete_res = client.delete(f"/api/v1/{USER_ID}/todos")
