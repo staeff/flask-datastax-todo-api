@@ -23,8 +23,8 @@ def get_todos(user_id):
 
 @app.route("/api/v1/<user_id>/todos", methods=["DELETE"])
 def delete_todos(user_id):
-    session.execute(
-        f"TRUNCATE TABLE {KEYSPACE}.todoitems")
+    cql = f"DELETE FROM {KEYSPACE}.todoitems WHERE user_id = '{user_id}'"
+    session.execute(cql)
     sync_table(Todos)
     return jsonify({"success": True})
 

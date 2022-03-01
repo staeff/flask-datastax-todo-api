@@ -27,7 +27,7 @@ def test_update_todo():
     assert todo.title == "hello world 4"
 
 
-@pytest.mark.it("it should delete all todos")
+@pytest.mark.it("it should delete all todos of user")
 def test_delete_all_todos():
     session.execute(
-        f"TRUNCATE TABLE {KEYSPACE}.todoitems")
+        f"DELETE FROM {KEYSPACE}.todoitems WHERE user_id = 'jake'")
